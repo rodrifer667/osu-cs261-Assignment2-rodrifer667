@@ -151,8 +151,9 @@ class DynamicArray:
             resized_static_array = StaticArray(new_capacity)
             # append dynamic array value to resized static array for each index
             for index in range(self._size):
-                # account for conditions ==> out of bounds
-                if index >= new_capacity:
+                # consider that new capacity is less than current size
+                if new_capacity < index+1:
+                    self._size = new_capacity
                     break
                 else:
                     self_value = self.get_at_index(index)
@@ -162,10 +163,21 @@ class DynamicArray:
 
     def append(self, value: object) -> None:
         """
-        TODO: Write this implementation
+        Adds the value to the end of the dynamic array.
+
+        Doubles capacity if necessary. Appends the value.
+
+        Parameters:
+            value (object): value to be appended
+
+        Returns:
+            NA
         """
+        # resize if capacity isn't big enough
         if self._size >= self._capacity:
             self.resize(2*self._capacity)
+
+        # append value
         self._data.set(self.length(), value)
         self._size += 1
 
