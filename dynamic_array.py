@@ -1,8 +1,8 @@
-# Name:
-# OSU Email:
+# Name: Fernando I. Rodriguez-Estrada
+# OSU Email: rodrifer@oregonstate.edu
 # Course: CS261 - Data Structures
-# Assignment:
-# Due Date:
+# Assignment: Assignment 2: Dynamic Array and ADT Implementation
+# Due Date: 02/06/2023
 # Description:
 
 
@@ -133,15 +133,42 @@ class DynamicArray:
 
     def resize(self, new_capacity: int) -> None:
         """
-        TODO: Write this implementation
+        Resizes the self.
+
+        The function branches according to whether or not the new_capacity
+        is greater than or equal to zero. If the new_capacity is at least 1,
+        the function creates a new resized_static_array to update
+        self._data by iterate through the indices of the current static
+        array that holds the data as it updates the capacity/size. Then,
+        the function updates the capacity.
         """
-        pass
+
+        # exception handling: new_capacity is less than 1
+        if new_capacity < 0 or new_capacity == 0:
+            raise DynamicArrayException
+        # increase size of array s.t. new_capacity is at least 1
+        else:
+            resized_static_array = StaticArray(new_capacity)
+            # append dynamic array value to resized static array for each index
+            for index in range(self._size):
+                # account for conditions ==> out of bounds
+                if index >= new_capacity:
+                    break
+                else:
+                    self_value = self.get_at_index(index)
+                    resized_static_array.set(index, self_value)
+            self._capacity = new_capacity
+            self._data = resized_static_array
 
     def append(self, value: object) -> None:
         """
         TODO: Write this implementation
         """
-        pass
+        if self._size >= self._capacity:
+            self.resize(2*self._capacity)
+        self._data.set(self.length(), value)
+        self._size += 1
+
 
     def insert_at_index(self, index: int, value: object) -> None:
         """
