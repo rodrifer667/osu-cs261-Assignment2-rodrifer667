@@ -157,10 +157,11 @@ class DynamicArray:
             resized_data_container = StaticArray(new_capacity)
             # append dynamic array value to resized static array for each index
             for data_index in range(self._size):
-                while data_index < new_capacity:
-                    data_value = self._data.get(data_index)
-                    resized_data_container.set(data_index, data_value)
-                    new_size += 1
+                if data_index >= new_capacity:
+                    break
+                data_value = self._data.get(data_index)
+                resized_data_container.set(data_index, data_value)
+                new_size += 1
             self._size = new_size
             self._capacity = new_capacity
             self._data = resized_data_container
