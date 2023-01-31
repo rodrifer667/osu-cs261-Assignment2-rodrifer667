@@ -144,7 +144,7 @@ class DynamicArray:
         """
 
         if new_capacity == 0 and self._size > 0:
-            self._size = 0
+            return
         elif new_capacity > 0:
             new_size = 0
             resized_data_container = StaticArray(new_capacity)
