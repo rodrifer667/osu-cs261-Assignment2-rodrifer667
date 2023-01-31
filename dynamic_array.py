@@ -143,7 +143,7 @@ class DynamicArray:
         the function updates the capacity.
         """
         # increase size of array s.t. new_capacity is at least 1
-        if new_capacity <= 0:
+        if new_capacity < 0:
             resized_data_container = StaticArray(2)
             self._size = 0
             self._data = resized_data_container
