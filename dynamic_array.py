@@ -142,8 +142,12 @@ class DynamicArray:
         array that holds the data as it updates the capacity/size. Then,
         the function updates the capacity.
         """
-        # increase size of array s.t. new_capacity is at least 1
+
+        # exception handling: new_capacity is less than 1
         if new_capacity < 0:
+            raise DynamicArrayException
+        # increase size of array s.t. new_capacity is at least 1
+        elif new_capacity <= 0:
             resized_data_container = StaticArray(2)
             self._size = 0
             self._data = resized_data_container
