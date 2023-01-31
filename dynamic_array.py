@@ -217,7 +217,8 @@ class DynamicArray:
             NA
         """
         # account for invalid index: negative index or out of bounds
-        if index < 0 or index >= self._capacity and self._size != 0:
+        if index < 0 or index >= self._capacity and self._size != 0 or \
+                index>self._size:
             raise DynamicArrayException
 
         # case 1: capacity is too small
