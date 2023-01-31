@@ -147,19 +147,23 @@ class DynamicArray:
         if new_capacity < 0:
             raise DynamicArrayException
         # increase size of array s.t. new_capacity is at least 1
+        elif new_capacity == 0:
+            resized_data_container = StaticArray(2)
+            self._size = 0
+            self._capacity = 2
+            self._data = resized_data_container
         else:
-            resized_static_array = StaticArray(new_capacity)
+            new_size = 0
+            resized_data_container = StaticArray(new_capacity)
             # append dynamic array value to resized static array for each index
-            for index in range(self._size):
-                # consider that new capacity is less than current size
-                if new_capacity < index+1:
-                    break
-                else:
-                    self_value = self.get_at_index(index)
-                    resized_static_array.set(index, self_value)
-            self._size = new_capacity
+            for data_index in range(self._size):
+                while data_index < new_capacity:
+                    data_value = self._data.get(data_index)
+                    resized_data_container.set(data_index, data_value)
+                    new_size += 1
+            self._size = new_size
             self._capacity = new_capacity
-            self._data = resized_static_array
+            self._data = resized_data_container
 
     def append(self, value: object) -> None:
         """
