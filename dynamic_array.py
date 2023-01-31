@@ -152,14 +152,11 @@ class DynamicArray:
                 if new_capacity <= self._size:
                     resized_data_container = self._data
                     new_capacity = self._capacity
-                    new_size = self._size
                     break
                 data_value = self._data.get(data_index)
                 resized_data_container.set(data_index, data_value)
             if new_capacity < self._size:
                 new_size = new_capacity
-            else:
-                new_size = self._size
             self._size = new_size
             self._capacity = new_capacity
             self._data = resized_data_container
