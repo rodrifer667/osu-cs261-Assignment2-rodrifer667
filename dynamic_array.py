@@ -181,24 +181,120 @@ class DynamicArray:
         self._data.set(self.length(), value)
         self._size += 1
 
-
     def insert_at_index(self, index: int, value: object) -> None:
         """
-        TODO: Write this implementation
+        Inserts value at index of DynamicArray.
+
+        First, the function checks that "index" is within the correct range.
+        The function breaks down the problem into the case that the capacity is
+        too small, case 1 and the case that the capacity is large enough. In
+        the first case, the function creates a new data container, "new_data".
+        Then, it populates new_data up until "new_data" reaches index. At this
+        point, the function populates "index" with "value". Finally,
+        the function proceeds to populate "new_data" with the values from
+        the old data container. The function proceeds to update the capacity
+        and the original data container with the values from "new_data". In
+        contrast, if the capacity for the dynamic array is large enough,
+        case 2, the function translates the values from the original
+        container, "self._data", one space to the right by iterating backwards
+        starting at the last index of "self._data". The function sets the
+        values of the current index to the value at the previous index until it
+        reaches "index". At which point, the function sets the value at
+        "index" to "value". Finally, after case 1 and case 2 the function
+        increments the size.
+
+        Parameters:
+            index (int): index to place value in dynamic array
+            value (object): value to place at index in dynamic array
+
+        Returns:
+            NA
         """
-        pass
+        # account for invalid index: negative index or out of bounds
+        if index < 0 or index >= self._size and self._size != 0:
+            raise DynamicArrayException
+
+        # case 1: capacity is too small
+        if self._capacity <= self._size:
+            # initialize new container for data
+            new_capacity = 2*self._capacity
+            new_data = StaticArray(new_capacity)
+
+            # add data values from self._data to new container up to index-1
+            for data_index in range(index):
+                new_data.set(data_index, self._data.get(data_index))
+            # add "value" at "index" in new data container
+            new_data.set(index, value)
+            # add the rest of the data values from self._data to new container
+            for data_index in range(index+1, self._size+1):
+                new_data.set(data_index, self._data.get(data_index-1))
+            self._capacity = new_capacity
+            self._data = new_data
+        # case 2: capacity is large enough
+        else:
+            # shift values to the right
+            for data_index in range(self._size, index, -1):
+                self._data.set(data_index, self._data.get(data_index - 1))
+            # insert "value" at "index"
+            self._data.set(index, value)
+
+        self._size += 1
 
     def remove_at_index(self, index: int) -> None:
         """
-        TODO: Write this implementation
+        Removes value at index.
+
+        The function removes the value at the index.
+
+        First, the value makes sure that the index is within range. The,
+        the function iterates through the indices of the data starting at
+        the value that will be removed. At each iteration, the function sets
+        the value at that index to value at the next index. The iteration
+        stops after it has reached the last value in the data.
+
+        Parameters:
+            index (int): index that holds value in data to be removed
+
+        Returns:
+            NA
         """
-        pass
+        # account for invalid index: negative index or out of bounds
+        if index < 0 or index >= self._size:
+            raise DynamicArrayException
+
+        # shift values to the left
+        for data_index in range(index, self._size-1):
+            self._data.set(data_index, self._data.get(data_index+1))
+
+        self._size -= 1
 
     def slice(self, start_index: int, size: int) -> "DynamicArray":
         """
-        TODO: Write this implementation
+        This function returns new DynamicArray that contains the data from
+        the original data between the index bounds of
+        [start_index, start_index+size).
+
+        First, the function checks that the bounds of the slice are in the
+        correct range. Otherwise, the function raises an exception. Then,
+        the function initializes a new DynamicArray, answer. Next,
+        the function iterates through the indices starting at
+        "start_index" after "size" number of occurrences. At each iteration,
+        the function appends the value from self._data at the index to answer.
+        Finally, the function returns answer.
         """
-        pass
+
+        # invalid size or invalid start index
+        if start_index < 0 or start_index >= self._size:
+                raise DynamicArrayException
+
+        if size+start_index > self._size or size < 0:
+            raise DynamicArrayException
+
+        answer = DynamicArray()
+        for data_index in range(start_index, size+start_index):
+            answer.append(self._data.get(data_index))
+
+        return answer
 
     def merge(self, second_da: "DynamicArray") -> None:
         """
