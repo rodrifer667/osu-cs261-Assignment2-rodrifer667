@@ -158,12 +158,15 @@ class DynamicArray:
             for data_index in range(self._size):
                 if new_capacity <= self._size:
                     resized_data_container = self._data
+                    new_capacity = self._capacity
+                    new_size = self._size
                     break
                 data_value = self._data.get(data_index)
                 resized_data_container.set(data_index, data_value)
                 new_size += 1
             self._size = new_size
             self._capacity = new_capacity
+            print(resized_data_container)
             self._data = resized_data_container
 
     def append(self, value: object) -> None:
