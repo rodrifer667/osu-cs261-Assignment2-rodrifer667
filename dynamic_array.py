@@ -143,7 +143,9 @@ class DynamicArray:
         the function updates the capacity.
         """
 
-        if new_capacity >= 0:
+        if new_capacity == 0 and self._size > 0:
+            self._size = 0
+        elif new_capacity > 0:
             new_size = 0
             resized_data_container = StaticArray(new_capacity)
             # append dynamic array value to resized static array for each index
@@ -159,6 +161,9 @@ class DynamicArray:
             self._size = new_size
             self._capacity = new_capacity
             self._data = resized_data_container
+        else:
+            return
+
 
     def append(self, value: object) -> None:
         """
