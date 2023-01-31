@@ -145,19 +145,24 @@ class DynamicArray:
 
         if new_capacity <= 0 and self._size > 0:
             return
+
+        # capacity is within correct range
         elif new_capacity > 0:
             resized_data_container = StaticArray(new_capacity)
             # append dynamic array value to resized static array for each index
             for data_index in range(self._size):
+                # don't append anymore if new capacity reaches size
                 if new_capacity < self._size:
                     resized_data_container = self._data
                     new_capacity = self._capacity
                     break
                 data_value = self._data.get(data_index)
                 resized_data_container.set(data_index, data_value)
+            # correct self._size if new capacity is smaller than size
             if new_capacity < self._size:
                 new_size = new_capacity
                 self._size = new_size
+            # update capacity and data
             self._capacity = new_capacity
             self._data = resized_data_container
 
@@ -212,7 +217,7 @@ class DynamicArray:
             NA
         """
         # account for invalid index: negative index or out of bounds
-        if index < 0 or index >= self._size and self._size != 0:
+        if index < 0 or index >= self._capacity and self._size != 0:
             raise DynamicArrayException
 
         # case 1: capacity is too small
