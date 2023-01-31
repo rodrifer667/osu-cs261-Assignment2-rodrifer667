@@ -153,11 +153,11 @@ class DynamicArray:
             for index in range(self._size):
                 # consider that new capacity is less than current size
                 if new_capacity < index+1:
-                    self._size = new_capacity
                     break
                 else:
                     self_value = self.get_at_index(index)
                     resized_static_array.set(index, self_value)
+            self._size = new_capacity
             self._capacity = new_capacity
             self._data = resized_static_array
 
