@@ -158,7 +158,6 @@ class DynamicArray:
                 new_size += 1
             self._size = new_size
             self._capacity = new_capacity
-            print(resized_data_container)
             self._data = resized_data_container
 
     def append(self, value: object) -> None:
