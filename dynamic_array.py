@@ -391,7 +391,27 @@ class DynamicArray:
 
     def reduce(self, reduce_func, initializer=None) -> object:
         """
-        TODO: Write this implementation
+        This function imitates the Python reduce function.
+
+        The function starts by branching for the case that the input
+        includes and does not include an initializer. If the function does
+        not have an initializer the first input of reduce_func, value,
+        becomes the value held at the first index of self and the second input
+        for input becomes the value held at index 1 in self. In the case that
+        there is no initializer, the first input value for reduce_func
+        becomes the initializer and the second input value for the
+        initializer becomes the value store at the 0th index of self. Then,
+        the function iterates through the indices of self and cumulatively
+        operates with the value as the first input and the value held at the
+        given index in the second input. "value" is the output.
+
+        Parameters:
+            reduce_func (function): this is the function used to cumulatively
+                    operate with "value" and the value held at the given index
+                    of self.
+            initializer (int): optional value to start the rally.
+        Returns:
+            value (int):
         """
         if initializer is None:
             value = self._data.get(0)
@@ -407,8 +427,24 @@ def find_mode(arr: DynamicArray) -> (DynamicArray, int):
     """
     TODO: Write this implementation
     """
-    pass
+    arr_mode_values = DynamicArray()
+    frequency_mode = 1
+    frequency_previous_value = 1
+    for i in range(1, arr.length()):
+        previous_value = arr.get_at_index(i-1)
+        current_value = arr.get_at_index(i)
+        if previous_value == current_value:
+            frequency_previous_value += 1
+        else:
+            if frequency_previous_value == frequency_mode:
+                arr_mode_values.append(previous_value)
+            elif frequency_previous_value > frequency_mode:
+                arr_mode_values = DynamicArray()
+                arr_mode_values.append(previous_value)
+                frequency_mode = frequency_previous_value
+            frequency_previous_value = 1
 
+    return (arr_mode_values, frequency_mode)
 
 # ------------------- BASIC TESTING -----------------------------------------
 
