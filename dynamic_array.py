@@ -274,6 +274,11 @@ class DynamicArray:
             # shift values to the left
             for data_index in range(index, self._size - 1):
                 self._data.set(data_index, self._data.get(data_index + 1))
+        elif self._size < 0.25 * self._capacity:
+            self.resize(10)
+            # shift values to the left
+            for data_index in range(index, self._size - 1):
+                self._data.set(data_index, self._data.get(data_index + 1))
         # size isn't relatively too small
         else:
             # shift values to the left
