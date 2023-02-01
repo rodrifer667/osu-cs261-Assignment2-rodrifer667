@@ -269,7 +269,7 @@ class DynamicArray:
             raise DynamicArrayException
 
         # size is STRICTLY LESS than a 1/4 of the capacity
-        if self._size < 0.25 * self._capacity:
+        if self._size < 0.25 * self._capacity and self._capacity/2 > 10:
             self.resize(2*self._size)
             # shift values to the left
             for data_index in range(index, self._size - 1):
