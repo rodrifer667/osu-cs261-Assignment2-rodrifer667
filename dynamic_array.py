@@ -350,7 +350,7 @@ class DynamicArray:
         iteration, the function applies the map function to the value
         corresponding to the current index. Then, it appends the value to
         answer. After the function iterates through all the indices,
-        it returns answer.
+        it returns answer .
         """
 
         answer = DynamicArray()
