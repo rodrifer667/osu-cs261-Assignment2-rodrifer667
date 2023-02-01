@@ -300,6 +300,14 @@ class DynamicArray:
         "start_index" after "size" number of occurrences. At each iteration,
         the function appends the value from self._data at the index to answer.
         Finally, the function returns answer.
+
+        Parameters:
+            start_index (int): index from data container for self that holds the
+                    value of the first slice
+            size (int): the size of the DynamicArray that will be returned
+
+        Returns:
+            answer (DynamicArray)
         """
 
         # invalid size or invalid start index
@@ -317,7 +325,17 @@ class DynamicArray:
 
     def merge(self, second_da: "DynamicArray") -> None:
         """
-        TODO: Write this implementation
+        This function merges second_da to self.
+
+        The iterates through the values of second_do. It appends the value
+        from second_da to the current dynamic array.
+
+        Parameters:
+            second_da (DynamicArray): holds the values that will be appended to
+                    self.
+
+        Returns:
+            NA
         """
         # capacity too small -> make capacity double of the largest size
         for second_da_index in range(second_da.length()):
@@ -328,7 +346,11 @@ class DynamicArray:
         """
         TODO: Write this implementation
         """
-        pass
+        answer = DynamicArray()
+        for self_index in range(self._size):
+            answer_value = map_func(self._data.get(self_index))
+            answer.append(answer_value)
+        return answer
 
     def filter(self, filter_func) -> "DynamicArray":
         """
