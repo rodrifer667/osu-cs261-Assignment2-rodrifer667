@@ -428,23 +428,26 @@ def find_mode(arr: DynamicArray) -> (DynamicArray, int):
     TODO: Write this implementation
     """
     arr_mode_values = DynamicArray()
-    frequency_mode = 1
-    frequency_previous_value = 1
+    arr_mode_values.append(arr.get_at_index(0))
+    mode_frequency = 1
+    frequency_current_value = 1
     for i in range(1, arr.length()):
-        previous_value = arr.get_at_index(i-1)
         current_value = arr.get_at_index(i)
+        previous_value = arr.get_at_index(i-1)
+        if mode_frequency < frequency_current_value:
+            mode_frequency = frequency_current_value
         if previous_value == current_value:
-            frequency_previous_value += 1
+            frequency_current_value += 1
         else:
-            if frequency_previous_value == frequency_mode:
-                arr_mode_values.append(previous_value)
-            elif frequency_previous_value > frequency_mode:
+            if frequency_current_value > mode_frequency:
                 arr_mode_values = DynamicArray()
-                arr_mode_values.append(previous_value)
-                frequency_mode = frequency_previous_value
-            frequency_previous_value = 1
+                arr_mode_values.append(current_value)
+                mode_frequency = frequency_current_value
+            elif frequency_current_value == mode_frequency:
+                arr_mode_values.append(current_value)
+            frequency_current_value = 1
 
-    return (arr_mode_values, frequency_mode)
+    return (arr_mode_values, mode_frequency)
 
 # ------------------- BASIC TESTING -----------------------------------------
 
