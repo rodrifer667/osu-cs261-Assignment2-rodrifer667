@@ -382,6 +382,7 @@ class DynamicArray:
         """
         result = DynamicArray()
 
+        # append each value that satisfies filter function to result from self
         for i in range(self._size):
             value = self._data.get(i)
             if filter_func(value):
@@ -413,12 +414,17 @@ class DynamicArray:
         Returns:
             value (int):
         """
+
+        # establish the first input for reduce_function
         if initializer is None:
             value = self._data.get(0)
             start_index = 1
         else:
             value = initializer
             start_index = 0
+
+        # cyclically evaluate reduce function for the output of the previous
+        # value and the value at the given index
         for i in range(start_index, self._size):
             value = reduce_func(value, self.get_at_index(i))
         return value
