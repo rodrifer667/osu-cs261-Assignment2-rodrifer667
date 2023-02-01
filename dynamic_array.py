@@ -350,7 +350,7 @@ class DynamicArray:
         iteration, the function applies the map function to the value
         corresponding to the current index. Then, it appends the value to
         answer. After the function iterates through all the indices,
-        it returns answer .
+        it returns answer.
         """
 
         answer = DynamicArray()
@@ -363,7 +363,22 @@ class DynamicArray:
 
     def filter(self, filter_func) -> "DynamicArray":
         """
-        TODO: Write this implementation
+        This function imitates the filter function in Python.
+
+        The function creates a new DynamicArray. Then, the function iterates
+        through the indices of the data container for self. At each index,
+        the function appends the value at the current index if it satisfies
+        the criteria laid out by the filter function to the new DynamicArray.
+         After the function iterates through all the indices of the data
+         container for self, it returns the new DynamicArray.
+
+         Parameters:
+             filter_func (function): this is the function that will lay out
+                    the criteria for each value to be added to the new
+                    DynamicArray.
+        Returns:
+            result (DynamicArray): this is the data structure that holds the
+                    values from self that satisfy the filter function.
         """
         result = DynamicArray()
 
@@ -380,9 +395,11 @@ class DynamicArray:
         """
         if initializer is None:
             value = self._data.get(0)
+            start_index = 1
         else:
             value = initializer
-        for i in range(self._size):
+            start_index = 0
+        for i in range(start_index, self._size):
             value = reduce_func(value, self.get_at_index(i))
         return value
 
