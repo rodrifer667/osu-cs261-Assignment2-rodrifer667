@@ -321,7 +321,7 @@ class DynamicArray:
         """
         # capacity too small -> make capacity double of the largest size
         if second_da.length() + self._size > self._capacity:
-            new_size = 2 * (second_da.length() + self._size)
+            new_size = 2 * self._size
             self.resize(new_size)
         for second_da_index in range(second_da.length()):
             second_da_value = second_da.get_at_index(second_da_index)
