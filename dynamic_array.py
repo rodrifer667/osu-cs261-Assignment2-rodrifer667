@@ -268,9 +268,17 @@ class DynamicArray:
         if index < 0 or index >= self._size:
             raise DynamicArrayException
 
-        # shift values to the left
-        for data_index in range(index, self._size-1):
-            self._data.set(data_index, self._data.get(data_index+1))
+        # size is STRICTLY LESS than a 1/4 of the capacity
+        if self._size < 0.25 * self._capacity:
+            self.resize(2*self._size)
+            # shift values to the left
+            for data_index in range(index, self._size - 1):
+                self._data.set(data_index, self._data.get(data_index + 1))
+        # size isn't relatively too small
+        else:
+            # shift values to the left
+            for data_index in range(index, self._size-1):
+                self._data.set(data_index, self._data.get(data_index+1))
 
         self._size -= 1
 
