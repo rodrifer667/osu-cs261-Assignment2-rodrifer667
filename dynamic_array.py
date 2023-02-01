@@ -344,9 +344,18 @@ class DynamicArray:
 
     def map(self, map_func) -> "DynamicArray":
         """
-        TODO: Write this implementation
+        Emulates Python map function.
+
+        The function iterates through the indices of self. At each
+        iteration, the function applies the map function to the value
+        corresponding to the current index. Then, it appends the value to
+        answer. After the function iterates through all the indices,
+        it returns answer.
         """
+
         answer = DynamicArray()
+        # appends the value resulting from applying the map function to each
+        # value at all the indices
         for self_index in range(self._size):
             answer_value = map_func(self._data.get(self_index))
             answer.append(answer_value)
@@ -356,7 +365,14 @@ class DynamicArray:
         """
         TODO: Write this implementation
         """
-        pass
+        result = DynamicArray()
+
+        for i in range(self._size):
+            value = self._data.get(i)
+            if filter_func(value):
+                result.append(value)
+
+        return result
 
     def reduce(self, reduce_func, initializer=None) -> object:
         """
