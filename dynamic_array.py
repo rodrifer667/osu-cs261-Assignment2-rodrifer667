@@ -324,8 +324,9 @@ class DynamicArray:
                 self._capacity > second_da.length():
             new_size = 2 * self._capacity
             self.resize(new_size)
-        elif self._capacity < second_da.length():
-            new_size = second_da.length()
+        elif self._capacity < second_da.length() and second_da.length() + \
+                self._size > self._capacity:
+            new_size = second_da.get_capacity()
             self.resize(new_size)
         for second_da_index in range(second_da.length()):
             second_da_value = second_da.get_at_index(second_da_index)
