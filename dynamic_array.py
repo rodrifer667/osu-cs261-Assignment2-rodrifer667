@@ -378,8 +378,13 @@ class DynamicArray:
         """
         TODO: Write this implementation
         """
-        pass
-
+        if initializer is None:
+            value = self._data.get(0)
+        else:
+            value = initializer
+        for i in range(self._size):
+            value = reduce_func(value, self.get_at_index(i))
+        return value
 
 def find_mode(arr: DynamicArray) -> (DynamicArray, int):
     """
