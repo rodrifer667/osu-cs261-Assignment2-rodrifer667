@@ -305,10 +305,10 @@ class DynamicArray:
         # invalid size or invalid start index
         if start_index < 0 or start_index >= self._size:
                 raise DynamicArrayException
-
         if size+start_index > self._size or size < 0:
             raise DynamicArrayException
 
+        # append values at index within given bounds of slice
         answer = DynamicArray()
         for data_index in range(start_index, size+start_index):
             answer.append(self._data.get(data_index))
@@ -319,7 +319,14 @@ class DynamicArray:
         """
         TODO: Write this implementation
         """
-        pass
+        # capacity too small -> make capacity double of the largest size
+        if second_da.length() + self._size > self._capacity:
+            new_size = 2 * (second_da.length() + self._size)
+            self.resize(new_size)
+        for second_da_index in range(second_da.length()):
+            second_da_value = second_da.get_at_index(second_da_index)
+            self._data.set(second_da_index + self._size, second_da_value)
+        self._size += second_da.length()
 
     def map(self, map_func) -> "DynamicArray":
         """
