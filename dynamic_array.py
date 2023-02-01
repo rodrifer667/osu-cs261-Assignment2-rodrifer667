@@ -327,11 +327,10 @@ class DynamicArray:
         elif self._capacity < second_da.length():
             new_size = second_da.length()
             self.resize(new_size)
-        else:
-            for second_da_index in range(second_da.length()):
-                second_da_value = second_da.get_at_index(second_da_index)
-                self._data.set(second_da_index + self._size, second_da_value)
-            self._size += second_da.length()
+        for second_da_index in range(second_da.length()):
+            second_da_value = second_da.get_at_index(second_da_index)
+            self._data.set(second_da_index + self._size, second_da_value)
+        self._size += second_da.length()
 
     def map(self, map_func) -> "DynamicArray":
         """
