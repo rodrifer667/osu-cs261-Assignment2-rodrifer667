@@ -76,7 +76,7 @@ class Bag:
         """
         value_count = 0
         for i in range(self._da.length()):
-            if self._da.get_at_index(i) == value
+            if self._da.get_at_index(i) == value:
                 value_count
         return value_count
 
