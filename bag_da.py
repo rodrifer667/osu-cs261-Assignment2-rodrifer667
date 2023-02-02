@@ -93,16 +93,14 @@ class Bag:
         """
 
         equal_bag = True
-        exclude = None
+        hit = 0
         if second_bag.size() != self.size():
             return False
         for i in range(self.size()):
             for j in range(second_bag.size()+1):
-                if j == exclude:
-                    continue
                 try:
                     if self._da.get_at_index(i) == second_bag._da.get_at_index(j):
-                        exclude = j
+                        hit += j
                         break
                 except:
                     equal_bag = False
@@ -110,8 +108,8 @@ class Bag:
                 return False
         if second_bag.size() != self.size():
             return False
+        return hit ==((second_bag.size()-1)*(second_bag.size()-1 +1)/2)
 
-        return equal_bag
 
     def __iter__(self):
         """
