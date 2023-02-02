@@ -457,6 +457,9 @@ def find_mode(arr: DynamicArray) -> (DynamicArray, int):
                 arr_mode_values = DynamicArray()
                 arr_mode_values.append(previous_value)
 
+    if frequency_current_value > mode_frequency:
+        mode_frequency = frequency_current_value
+
     return (arr_mode_values, mode_frequency)
 
 # ------------------- BASIC TESTING -----------------------------------------
