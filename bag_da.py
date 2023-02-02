@@ -72,9 +72,10 @@ class Bag:
 
     def count(self, value: object) -> int:
         """
-        Returns
+        Returns number of occurrences for value in bag.
         """
         value_count = 0
+        # increment count if value encountered in bag
         for i in range(self._da.length()):
             if self._da.get_at_index(i) == value:
                 value_count += 1
@@ -82,9 +83,9 @@ class Bag:
 
     def clear(self) -> None:
         """
-        TODO: Write this implementation
+        Empties the bag.
         """
-        pass
+        self._da = DynamicArray()
 
     def equal(self, second_bag: "Bag") -> bool:
         """
