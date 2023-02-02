@@ -91,7 +91,24 @@ class Bag:
         """
         TODO: Write this implementation
         """
-        pass
+
+        equal_bag = True
+
+        for i in range(self.size()):
+            for j in range(second_bag.size()+1):
+                try:
+                    if self._da.get_at_index(i) == second_bag._da.get_at_index(j):
+                        continue
+                except:
+                    equal_bag = False
+            if equal_bag == False:
+                return False
+
+        return equal_bag
+
+
+
+
 
     def __iter__(self):
         """
@@ -127,10 +144,6 @@ if __name__ == "__main__":
     print(bag.remove(3), bag)
     print(bag.remove(3), bag)
     print(bag.remove(3), bag)
-
-    print("\n# count example 1")
-    bag = Bag([1, 2, 3, 1, 2, 2])
-    print(bag, bag.count(1), bag.count(2), bag.count(3), bag.count(4))
 
     print("\n# clear example 1")
     bag = Bag([1, 2, 3, 1, 2, 3])
