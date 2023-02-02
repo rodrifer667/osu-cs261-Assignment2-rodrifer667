@@ -89,7 +89,7 @@ class Bag:
 
     def equal(self, second_bag: "Bag") -> bool:
         """
-        TODO: Write this implementation
+        TO DO: Write this implementation
         """
 
         equal_bag = True
