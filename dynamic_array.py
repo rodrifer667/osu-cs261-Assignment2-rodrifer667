@@ -3,7 +3,10 @@
 # Course: CS261 - Data Structures
 # Assignment: Assignment 2: Dynamic Array and ADT Implementation
 # Due Date: 02/06/2023
-# Description:
+# Description: This file contains the implementation of a DynamicArray built
+# from out of a StaticArray. The implementation of DynamicArray imitates a
+# Python list. The file also contains some stand-alone functions including
+# find_mode and others.
 
 
 from static_array import StaticArray
@@ -431,19 +434,37 @@ class DynamicArray:
 
 def find_mode(arr: DynamicArray) -> (DynamicArray, int):
     """
-    TODO: Write this implementation
+    Returns a tuple where the first element holds the values from the input
+    of the function that appear the most frequently.
+
+    Parameters
+        arr (DynamicArray): the input of the array for which to measure most
+                frequent values and corresponding frequency
+
+    Returns
+        tuple (DynamicArray, int): The first entry holds the most frequent
+                values that appear in arr. The second entry holds the
+                frequency at which the most frequent values appear.
     """
     arr_mode_values = DynamicArray()
     mode_frequency = 1
     frequency_current_value = 1
-    tallying_value = arr.get_at_index(0)
+    # compare running tally of frequency for value at previous index and
+    # mode_frequency
     for i in range(1, arr.length()):
 
         current_value = arr.get_at_index(i)
         previous_value = arr.get_at_index(i-1)
+
+        # append/tally frequency of value for current index/ restart list
+        # and append value <-- based on value of running tally of frequency
+        # relative to the current_value
         if previous_value == current_value:
             frequency_current_value += 1
+        # working with a value that is different to one that corresponds to
+        # value for which function is counting frequency
         else:
+            # restart new array and append
             if frequency_current_value > mode_frequency:
                 arr_mode_values = DynamicArray()
                 arr_mode_values.append(previous_value)
@@ -451,14 +472,18 @@ def find_mode(arr: DynamicArray) -> (DynamicArray, int):
             elif frequency_current_value == mode_frequency:
                 arr_mode_values.append(previous_value)
             frequency_current_value = 1
+        # account for last value in arr being part of most frequent club
         if i == arr.length()-1 and mode_frequency == frequency_current_value:
             arr_mode_values.append(arr.get_at_index(i))
+        # account for last value to in newly-exclusive most frequent club
         elif i == arr.length()-1 and mode_frequency < frequency_current_value:
                 arr_mode_values = DynamicArray()
                 arr_mode_values.append(previous_value)
 
+    # update mode frequency appropriately
     if frequency_current_value > mode_frequency:
         mode_frequency = frequency_current_value
+    # account for case where arr = [-6, -6, -6, 6] or something similar
     if arr.length() == 1:
         arr_mode_values.append(arr.get_at_index(0))
 
