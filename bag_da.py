@@ -44,7 +44,13 @@ class Bag:
 
     def add(self, value: object) -> None:
         """
-        TODO: Write this implementation
+        Adds value to bag data structure.
+
+        parameters:
+            value (object): item to be put in bag.
+
+        returns:
+            NA
         """
         self._da.append(value)
 
@@ -52,7 +58,11 @@ class Bag:
         """
         TODO: Write this implementation
         """
-        pass
+        for i in range(self._da.length()):
+            if self._da.get_at_index(i) == value:
+                self._da.remove_at_index(i)
+                return True
+        return False
 
     def count(self, value: object) -> int:
         """
