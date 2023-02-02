@@ -98,9 +98,9 @@ class Bag:
             return False
         for i in range(self.size()):
             for j in range(second_bag.size()+1):
+                if j == exclude:
+                    continue
                 try:
-                    if j == exclude:
-                        continue
                     if self._da.get_at_index(i) == second_bag._da.get_at_index(j):
                         exclude = j
                         break
