@@ -93,22 +93,19 @@ class Bag:
         """
 
         equal_bag = True
-
+        if second_bag.size() != self.size():
+            return False
         for i in range(self.size()):
             for j in range(second_bag.size()+1):
                 try:
                     if self._da.get_at_index(i) == second_bag._da.get_at_index(j):
-                        continue
+                        break
                 except:
                     equal_bag = False
             if equal_bag == False:
                 return False
 
         return equal_bag
-
-
-
-
 
     def __iter__(self):
         """
