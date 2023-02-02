@@ -102,7 +102,7 @@ class Bag:
                     if j == exclude:
                         continue
                     if self._da.get_at_index(i) == second_bag._da.get_at_index(j):
-                        esclude = j
+                        exclude = j
                         break
                 except:
                     equal_bag = False
