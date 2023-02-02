@@ -72,7 +72,7 @@ class Bag:
 
     def count(self, value: object) -> int:
         """
-        TODO: Write this implementation
+        Returns
         """
         value_count = 0
         for i in range(self._da.length()):
