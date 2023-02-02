@@ -451,7 +451,7 @@ def find_mode(arr: DynamicArray) -> (DynamicArray, int):
             elif frequency_current_value == mode_frequency:
                 arr_mode_values.append(previous_value)
             frequency_current_value = 1
-        if i == arr.length()-1 and mode_frequency == 1:
+        if i == arr.length()-1 and mode_frequency == frequency_current_value:
             arr_mode_values.append(arr.get_at_index(i))
 
     return (arr_mode_values, mode_frequency)
