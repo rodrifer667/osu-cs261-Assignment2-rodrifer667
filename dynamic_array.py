@@ -434,24 +434,25 @@ def find_mode(arr: DynamicArray) -> (DynamicArray, int):
     TODO: Write this implementation
     """
     arr_mode_values = DynamicArray()
-    arr_mode_values.append(arr.get_at_index(0))
     mode_frequency = 1
     frequency_current_value = 1
+    tallying_value = arr.get_at_index(0)
     for i in range(1, arr.length()):
+
         current_value = arr.get_at_index(i)
         previous_value = arr.get_at_index(i-1)
-        if mode_frequency < frequency_current_value:
-            mode_frequency = frequency_current_value
         if previous_value == current_value:
             frequency_current_value += 1
         else:
             if frequency_current_value > mode_frequency:
                 arr_mode_values = DynamicArray()
-                arr_mode_values.append(current_value)
+                arr_mode_values.append(previous_value)
                 mode_frequency = frequency_current_value
             elif frequency_current_value == mode_frequency:
-                arr_mode_values.append(current_value)
+                arr_mode_values.append(previous_value)
             frequency_current_value = 1
+        if i == arr.length()-1 and mode_frequency == 1:
+            arr_mode_values.append(arr.get_at_index(i))
 
     return (arr_mode_values, mode_frequency)
 
