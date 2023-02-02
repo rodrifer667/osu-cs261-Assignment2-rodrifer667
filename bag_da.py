@@ -91,24 +91,12 @@ class Bag:
         """
         TO DO: Write this implementation
         """
-
-        equal_bag = True
-        hit = 0
-        if second_bag.size() != self.size():
+        if self.size() != second_bag.size():
             return False
         for i in range(self.size()):
-            for j in range(second_bag.size()+1):
-                try:
-                    if self._da.get_at_index(i) == second_bag._da.get_at_index(j):
-                        hit += j
-                        break
-                except:
-                    equal_bag = False
-            if equal_bag == False:
+            if self.count(i) != second_bag.count(i):
                 return False
-        if second_bag.size() != self.size():
-            return False
-        return hit ==((second_bag.size()-1)*(second_bag.size()-1 +1)/2)
+        return True
 
 
     def __iter__(self):
