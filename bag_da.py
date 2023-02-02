@@ -96,6 +96,15 @@ class Bag:
         for i in range(self.size()):
             if self.count(i) != second_bag.count(i):
                 return False
+
+        for i in range(self.size()):
+                for j in range(self.size()+1):
+                    try:
+                        if self._da.get_at_index(i) == \
+                                second_bag._da.get_at_index(j):
+                            break
+                    except:
+                        return False
         return True
 
 
