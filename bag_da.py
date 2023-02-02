@@ -3,7 +3,9 @@
 # Course: CS261 - Data Structures
 # Assignment: Assignment 2: Dynamic Array and ADT Implementation
 # Due Date: 02/06/2023
-# Description:
+# Description: This file contains the implementation of the
+# data type. The features most of the functionalities that
+# one would find in the bag data type.
 
 
 from dynamic_array import *
