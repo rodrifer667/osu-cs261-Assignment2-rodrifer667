@@ -77,7 +77,7 @@ class Bag:
         value_count = 0
         for i in range(self._da.length()):
             if self._da.get_at_index(i) == value:
-                value_count
+                value_count += 1
         return value_count
 
     def clear(self) -> None:
