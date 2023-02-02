@@ -96,12 +96,13 @@ class Bag:
             return False
 
         equals = True
-        # check that
+        # checks to see that the count is the same for each value in both bags
         for i in range(self.size()):
             if self.count(self._da.get_at_index(i)) != second_bag.count(
                     self._da.get_at_index(i)):
                 return False
 
+        # itersates through
         for i in range(self.size()):
             for j in range(self.size()+1):
                 try:
@@ -135,7 +136,7 @@ class Bag:
         TODO: Write this implementation
         """
         try:
-            value = self[self._index]
+            value = self._da.get_at_index(self._index)
         except DynamicArrayException:
             raise StopIteration
 
