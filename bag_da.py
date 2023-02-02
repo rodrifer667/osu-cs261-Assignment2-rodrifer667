@@ -105,6 +105,15 @@ class Bag:
                             break
                     except:
                         return False
+
+        for i in range(self.size()):
+                for j in range(self.size()+1):
+                    try:
+                        if self._da.get_at_index(j) == \
+                                second_bag._da.get_at_index(i):
+                            break
+                    except:
+                        return False
         return True
 
 
