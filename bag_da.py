@@ -90,7 +90,7 @@ class Bag:
     def equal(self, second_bag: "Bag") -> bool:
         """
         Returns boolean corresponding to the statement: the second bag
-        contains the same values as the firs.
+        contains the same values as the first.
         """
         if self.size() != second_bag.size():
             return False
@@ -105,6 +105,15 @@ class Bag:
                     try:
                         if self._da.get_at_index(i) == \
                                 second_bag._da.get_at_index(j):
+                            break
+                    except:
+                        return False
+
+        for i in range(self.size()):
+                for j in range(self.size()+1):
+                    try:
+                        if self._da.get_at_index(j) == \
+                                second_bag._da.get_at_index(i):
                             break
                     except:
                         return False
