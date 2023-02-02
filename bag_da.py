@@ -56,7 +56,13 @@ class Bag:
 
     def remove(self, value: object) -> bool:
         """
-        TODO: Write this implementation
+        Removes item from bag.
+
+        parameters:
+            value (object): value to be removed from bag.
+
+        returns:
+            (bool): True <= value was removed. False otherwise.
         """
         for i in range(self._da.length()):
             if self._da.get_at_index(i) == value:
@@ -68,7 +74,11 @@ class Bag:
         """
         TODO: Write this implementation
         """
-        pass
+        value_count = 0
+        for i in range(self._da.length()):
+            if self._da.get_at_index(i) == value
+                value_count
+        return value_count
 
     def clear(self) -> None:
         """
