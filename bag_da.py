@@ -89,12 +89,15 @@ class Bag:
 
     def equal(self, second_bag: "Bag") -> bool:
         """
-        TO DO: Write this implementation
+        Returns boolean corresponding to the statement: the second bag
+        contains the same values as the firs.
         """
         if self.size() != second_bag.size():
             return False
+
+        # check that
         for i in range(self.size()):
-            if self.count(i) != second_bag.count(i):
+            if self.count(self._da.get_at_index(i)) != second_bag.count(second_bag._da.get_at_index(i)):
                 return False
 
         for i in range(self.size()):
@@ -105,17 +108,7 @@ class Bag:
                             break
                     except:
                         return False
-
-        for i in range(self.size()):
-                for j in range(self.size()+1):
-                    try:
-                        if self._da.get_at_index(j) == \
-                                second_bag._da.get_at_index(i):
-                            break
-                    except:
-                        return False
         return True
-
 
     def __iter__(self):
         """
