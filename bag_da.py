@@ -102,7 +102,9 @@ class Bag:
                     self._da.get_at_index(i)):
                 return False
 
-        # itersates through
+        # iterates through indices of second bag for each index of the first
+        # bag to make sure the value at the index in the first bag is in the
+        # second bag
         for i in range(self.size()):
             for j in range(self.size()+1):
                 try:
@@ -114,6 +116,7 @@ class Bag:
             if equals == False:
                 return False
 
+        # same as above, except switch the bags.
         for i in range(self.size()):
             for j in range(self.size()+1):
                 try:
@@ -126,15 +129,17 @@ class Bag:
 
     def __iter__(self):
         """
-        TODO: Write this implementation
+        Initializes variable to keep track of the index for which to iterate
+        over.
         """
         self._index = 0
         return self
 
     def __next__(self):
         """
-        TODO: Write this implementation
+        Iterates to the next value.
         """
+        # try to get value at next index. Index DNE ==> raise Error
         try:
             value = self._da.get_at_index(self._index)
         except DynamicArrayException:
